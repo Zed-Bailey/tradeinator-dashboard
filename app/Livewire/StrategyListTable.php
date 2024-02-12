@@ -28,9 +28,11 @@ class StrategyListTable extends Component implements HasForms, HasTable
         return $table->query(fn () => SavedStrategy::query())
             ->columns([
                 TextColumn::make('SavedStrategyId'),
-                TextColumn::make('Slug'),
+                TextColumn::make('Slug')
+                    ->sortable(),
                 TextColumn::make('StrategyName'),
-                TextColumn::make('LastUpdated'),
+                TextColumn::make('LastUpdated')
+                    ->sortable(),
                 ToggleColumn::make('')
                     ->afterStateUpdated(function ($record, $state) {
                         // would send rabbit mq message here

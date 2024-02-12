@@ -10,7 +10,7 @@
     </head>
     <body>
 
-        <nav class="sticky top-0 mx-3 mt-2 rounded-xl bg-gray-200 h-10 flex items-center px-2">
+        <nav class="sticky top-0 mx-3 mt-2 rounded-xl bg-gray-200 h-10 flex items-center px-2 z-50">
             <h1 class="text-lg font-semibold">Dashboard</h1>
         </nav>
 

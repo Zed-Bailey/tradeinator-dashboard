@@ -43,10 +43,7 @@ class OandaApi
     }
 
     public function getAccounts() {
-        $request = $this->client->request('GET', 'accounts')
-            ->withAddedHeader('Authorization', 'Bearer ' . $this->apiKey);
-
-        return $this->client->send($request);
+        return $this->client->get('accounts');
     }
 
 }
