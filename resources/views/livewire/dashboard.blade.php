@@ -11,7 +11,8 @@ test
     </div>
 
     <div class="col-span-12">
-        @livewire(App\Livewire\InstrumentPriceChart::class)
+        <livewire:instrument-price-chart></livewire:instrument-price-chart>
+
     </div>
 
 </div>
