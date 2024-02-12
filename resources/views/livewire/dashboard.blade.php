@@ -4,10 +4,7 @@
         @livewire(App\Livewire\Widgets\AccountsWidget::class)
     </div>
 
-    <div class="col-span-12  md:col-span-6">
-        @livewire(App\Livewire\Widgets\ProfitAndLossWidget::class)
 
-    </div>
 
     <div class="col-span-12">
         @livewire('strategy-list-table')
