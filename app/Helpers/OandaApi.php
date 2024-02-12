@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Enums\CandlestickGranularity;
+use App\Models\Enums\InstrumentNames;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
@@ -11,6 +12,13 @@ class OandaApi
     private string $apiKey;
     private Client $client;
 
+    /**
+     * Will resolve an instance from the app service container
+     * @return OandaApi
+     */
+    public static function get(): OandaApi {
+        return app(OandaApi::class);
+    }
     public function __construct(string $apiKey)
     {
         $this->apiKey = $apiKey;
@@ -20,15 +28,15 @@ class OandaApi
                 'Authorization' => 'Bearer ' . $this->apiKey
             ]
         ]);
-        dump($this->client);
     }
 
-    public function getCandles(string $instrument, CandlestickGranularity $granularity = CandlestickGranularity::H1, int $count = 200): ResponseInterface {
+    public function getCandles(InstrumentNames $instrument, CandlestickGranularity $granularity = CandlestickGranularity::H1, int $count = 200): ResponseInterface {
         return $this->client->get(
-            'instruments/' . $instrument . '/candles',
+            'instruments/' . $instrument->name . '/candles',
             [
                 'query' => [
-                    'count' => $count
+                    'count' => $count,
+                    'smooth' => 'true'
                 ]
             ]
         );
