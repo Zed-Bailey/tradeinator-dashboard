@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // register a singleton instance of our oanda api interfce
         // this can be changed to a bind instance later on if required
-        $this->app->singleton('App\Helpers\OandaApi', function () {
+        $this->app->bind(OandaApi::class, function () {
             return new OandaApi(env('OANDA_API_KEY'));
         });
     }

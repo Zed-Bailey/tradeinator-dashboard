@@ -3,18 +3,21 @@
 namespace App\Livewire;
 
 use App\Helpers\OandaApi;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Dashboard extends Component
 {
-//    public Collection $strategies;
-    public OandaApi $apiInterface;
 
-    public function mount(OandaApi $api) {
-//        $this->strategies = SavedStrategy::all();
+    protected OandaApi $apiInterface;
+
+
+    public function mount(
+        OandaApi $api
+    ): void
+    {
 //        $this->apiInterface = $api;
-
+//        $res = $api->getCandles('AUD_CHF', 'H1', 10);
+//        dump($res->getBody()->getContents());
     }
 
     public function render()
