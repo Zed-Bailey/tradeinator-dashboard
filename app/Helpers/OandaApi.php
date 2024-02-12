@@ -46,4 +46,12 @@ class OandaApi
         return $this->client->get('accounts');
     }
 
+    public function getAccountDetail(string $accId) {
+        return $this->client->get('accounts/'.$accId);
+    }
+
+    public function getAccountSummary(string $accId) {
+        return $this->client->get('accounts/' . $accId . '/summary');
+    }
+
 }
