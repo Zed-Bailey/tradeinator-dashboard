@@ -14,11 +14,7 @@ class Dashboard extends Component
     public function mount(
         OandaApi $api
     ): void
-    {
-//        $this->apiInterface = $api;
-//        $res = $api->getCandles('AUD_CHF', 'H1', 10);
-//        dump($res->getBody()->getContents());
-    }
+    { }
 
     public function render()
     {
