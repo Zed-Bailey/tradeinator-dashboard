@@ -11,8 +11,7 @@
     </div>
 
     <div class="col-span-12">
-        <livewire:instrument-price-chart></livewire:instrument-price-chart>
-
+{{--        <livewire:instrument-price-chart></livewire:instrument-price-chart>--}}
     </div>
 
 </div>
