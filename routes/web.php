@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', \App\Livewire\Dashboard::class);
-Route::get('/strategy/{id}', function ($id) {
-    return $id;
-})->name("detail");
+Route::get('/strategy/{id}', App\Livewire\StrategyDetail::class)->name("detail");
 
 Route::get('/accounts/{id}', \App\Livewire\AccountDetail::class);

@@ -39,13 +39,13 @@ class StrategyListTable extends Component implements HasForms, HasTable
                     })
             ])->actions([
                 Action::make('view')
-                ->action(function() {
-                    Notification::make()
-                        ->title("View clicked")
-                        ->success()
-                        ->send();
-                })
-//                    ->url(fn (SavedStrategy $strategy) => route('detail', $strategy))
+//                ->action(function() {
+//                    Notification::make()
+//                        ->title("View clicked")
+//                        ->success()
+//                        ->send();
+//                })
+                    ->url(fn (SavedStrategy $strategy) => route('detail', $strategy))
             ]);
     }
 }
