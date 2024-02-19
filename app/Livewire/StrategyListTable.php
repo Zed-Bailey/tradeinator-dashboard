@@ -33,10 +33,10 @@ class StrategyListTable extends Component implements HasForms, HasTable
                 TextColumn::make('StrategyName'),
                 TextColumn::make('LastUpdated')
                     ->sortable(),
-                ToggleColumn::make('')
-                    ->afterStateUpdated(function ($record, $state) {
-                        // would send rabbit mq message here
-                    })
+//                ToggleColumn::make('')
+//                    ->afterStateUpdated(function ($record, $state) {
+//                        // would send rabbit mq message here
+//                    })
             ])->actions([
                 Action::make('view')
 //                ->action(function() {
