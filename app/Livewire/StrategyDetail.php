@@ -92,7 +92,7 @@ class StrategyDetail extends Component implements HasForms
 
         // duplicate the model
         $clonedStrategy = $strategy->replicate();
-        $clonedStrategy->CreatedAt = Carbon::now()->timestamp;
+        $clonedStrategy->CreatedAt = Carbon::now()->toDateTimeString();
         $clonedStrategy->LastUpdated = $clonedStrategy->CreatedAt;
         $clonedStrategy->save();
 
@@ -126,7 +126,7 @@ class StrategyDetail extends Component implements HasForms
 
         $strategy = SavedStrategy::find($this->id);
         $strategy->Config = $json;
-        $strategy->LastUpdated = Carbon::now()->timestamp;
+        $strategy->LastUpdated = Carbon::now()->toDateTimeString();
         $strategy->save();
 
         $msg = [
@@ -147,7 +147,7 @@ class StrategyDetail extends Component implements HasForms
     public function updateRawConfig() {
         $strategy = SavedStrategy::find($this->id);
         $strategy->Config = $this->rawJsonConfig;
-        $strategy->LastUpdated = Carbon::now()->timestamp;
+        $strategy->LastUpdated = Carbon::now()->toDateTimeString();
         $strategy->save();
 
         Notification::make()
