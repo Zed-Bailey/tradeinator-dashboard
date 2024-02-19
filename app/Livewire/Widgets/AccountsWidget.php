@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Widgets;
 
-use App\Helpers\OandaApi;
+use App\Services\OandaApi;
 use Livewire\Component;
 
 

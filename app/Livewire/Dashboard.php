@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Helpers\OandaApi;
+use App\Services\OandaApi;
 use Livewire\Component;
 
 class Dashboard extends Component

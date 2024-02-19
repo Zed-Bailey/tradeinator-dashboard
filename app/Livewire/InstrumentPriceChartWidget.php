@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Helpers\OandaApi;
+use App\Services\OandaApi;
 use App\Models\Enums\InstrumentNames;
 use Filament\Widgets\ChartWidget;
 use Livewire\Attributes\On;

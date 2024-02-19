@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Helpers\OandaApi;
+use App\Services\OandaApi;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

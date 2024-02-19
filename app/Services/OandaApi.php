@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Services;
 
 use App\Models\Enums\CandlestickGranularity;
 use App\Models\Enums\InstrumentNames;
