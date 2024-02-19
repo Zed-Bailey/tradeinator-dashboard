@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire;
-z
+
 use App\Models\SavedStrategy;
 use App\Services\RabbitMqService;
 use Filament\Forms\Components\Checkbox;
@@ -62,9 +62,9 @@ class StrategyDetail extends Component implements HasForms
                 case "System.Int32":
                     $fields[] = TextInput::make($param->PropertyName)
                     ->default($param->Value)
-//                    ->numeric()
-//                    ->step(1)
-                    ->regex('/^-?([0-9]\d*)$/gm')
+                    ->numeric()
+                    ->step(1)
+//                    ->regex('/^-?([0-9]\d*)$/gm')
                     ->required();
                     break;
             }
