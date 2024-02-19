@@ -19,7 +19,7 @@ class AccountsWidget extends Component
     {
         $a = $this->api->getAccounts();
         if($a->getStatusCode() == 200) {
-            $this->accounts = json_decode($a->getBody()->getContents())->accounts;
+            $this->accounts = collect(json_decode($a->getBody()->getContents())->accounts)->sort()->toArray();
         }
 
     }

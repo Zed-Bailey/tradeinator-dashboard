@@ -9,7 +9,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class ProfitAndLossWidget extends BaseWidget
 {
     // disable polling
-    protected static ?string $pollingInterval = '360s';
+    protected static ?string $pollingInterval = null;
 
     public mixed $accountSummary;
 
@@ -28,6 +28,9 @@ class ProfitAndLossWidget extends BaseWidget
                 ->description('accounts unrealised profit and loss'),
             Stat::make('Open Positions', $json->account->openPositionCount),
             Stat::make('Position Value', $json->account->positionValue),
+            Stat::make('Account NAV', $json->account->NAV),
+            Stat::make('Account Balance', $json->account->balance),
+
         ];
     }
 }
