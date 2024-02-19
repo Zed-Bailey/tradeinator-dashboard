@@ -11,4 +11,6 @@ class SavedStrategy extends Model
     protected $table = "SavedStrategies";
     protected $primaryKey = "SavedStrategyId";
 
+    public $timestamps = false;
+
 }

@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\SavedStrategy;
+use App\Services\RabbitMqService;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Livewire\Component;
 
 class StrategyDetail extends Component implements HasForms
@@ -21,7 +23,9 @@ class StrategyDetail extends Component implements HasForms
 
     public $rawJsonConfig = "";
 
-    public function mount($id) {
+
+    public function mount($id): void
+    {
         $this->id = $id;
         $this->strategy = SavedStrategy::find($id);
         $this->rawJsonConfig = $this->strategy->Config;
@@ -79,11 +83,45 @@ class StrategyDetail extends Component implements HasForms
 
 
     public function submitConfigUpdate() {
-        dump($this->form->getState());
+        $config = json_decode($this->strategy->Config);
+        $formState = $this->form->getState();
+        foreach($config as $param) {
+            $param->Value = $formState[$param->PropertyName];
+        }
 
+        $json = json_encode($config);
+
+        $strategy = SavedStrategy::find($this->id);
+        $strategy->Config = $json;
+        $strategy->LastUpdated = date(DATE_ATOM, time());
+        $strategy->save();
+
+        $msg = [
+            "Slug" => $this->strategy->Slug,
+            "Id" =>$this->id
+        ];
+        $rabbitService = app(RabbitMqService::class);
+        $rabbitService->publish(json_encode($msg), "update." . $this->strategy->Slug);
+
+        Notification::make()
+            ->title('Published strategy update event to exchange')
+            ->success()
+            ->send();
+
+        redirect('/');
     }
 
     public function updateRawConfig() {
+        $strategy = SavedStrategy::find($this->id);
+        $strategy->Config = $this->rawJsonConfig;
+        $strategy->LastUpdated = date(DATE_ATOM, time());
+        $strategy->save();
 
+        Notification::make()
+            ->title('Updated Raw Json Config')
+            ->success()
+            ->send();
+
+        redirect('/');
     }
 }
