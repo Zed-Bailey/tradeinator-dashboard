@@ -33,7 +33,6 @@ class StrategyDetail extends Component implements HasForms
     }
 
     public function form(Form $form): Form {
-        error_log($this->strategy);
         $jsonConfig = json_decode($this->strategy->Config);
         $fields = [];
 
