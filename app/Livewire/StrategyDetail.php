@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire;
-
+z
 use App\Models\SavedStrategy;
 use App\Services\RabbitMqService;
 use Filament\Forms\Components\Checkbox;
@@ -11,6 +11,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class StrategyDetail extends Component implements HasForms
 {
@@ -91,7 +92,7 @@ class StrategyDetail extends Component implements HasForms
 
         // duplicate the model
         $clonedStrategy = $strategy->replicate();
-        $clonedStrategy->CreatedAt = date('YYYY-MM-DD HH:MM:SS', time());
+        $clonedStrategy->CreatedAt = Carbon::now()->timestamp;
         $clonedStrategy->LastUpdated = $clonedStrategy->CreatedAt;
         $clonedStrategy->save();
 
@@ -125,7 +126,7 @@ class StrategyDetail extends Component implements HasForms
 
         $strategy = SavedStrategy::find($this->id);
         $strategy->Config = $json;
-        $strategy->LastUpdated = date('YYYY-MM-DD HH:MM:SS', time());
+        $strategy->LastUpdated = Carbon::now()->timestamp;
         $strategy->save();
 
         $msg = [
@@ -146,7 +147,7 @@ class StrategyDetail extends Component implements HasForms
     public function updateRawConfig() {
         $strategy = SavedStrategy::find($this->id);
         $strategy->Config = $this->rawJsonConfig;
-        $strategy->LastUpdated = date('YYYY-MM-DD HH:MM:SS', time());
+        $strategy->LastUpdated = Carbon::now()->timestamp;
         $strategy->save();
 
         Notification::make()

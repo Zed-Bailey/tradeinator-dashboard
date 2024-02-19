@@ -19,6 +19,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
+        "nesbot/carbon": "^2.72",
         "php-amqplib/php-amqplib": "^3.6"
     },
     "require-dev": {
