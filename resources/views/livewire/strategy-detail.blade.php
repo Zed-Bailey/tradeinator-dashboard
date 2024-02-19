@@ -1,5 +1,12 @@
 <div class="w-full max-w-7xl p-5">
-    <a wire:click href="/" class="border-b-2 hover:border-b-slate-900"><- Back</a>
+    <div class="flex justify-between items-center">
+        <a wire:click href="/" class="border-b-2 hover:border-b-slate-900"><- Back</a>
+        <div>
+            <button wire:click="duplicateStrategy" class="hover:bg-blue-500 hover:text-white font-bold p-2 rounded-lg transition-all duration-200">Duplicate</button>
+{{--            <button wire:click="deleteStrategy" class="hover:bg-red-500 hover:text-white font-bold p-2 rounded-lg transition-all duration-200">Delete</button>    --}}
+        </div>
+    </div>
+
 
     <h1 class="text-3xl mt-4">{{$strategy->StrategyName}}</h1>
     <span class="inline-flex gap-5">

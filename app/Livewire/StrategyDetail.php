@@ -81,6 +81,39 @@ class StrategyDetail extends Component implements HasForms
     }
 
 
+    public function deleteStrategy() {
+        $this->strategy->delete();
+        redirect('/');
+    }
+
+    public function duplicateStrategy() {
+        $strategy = SavedStrategy::find($this->id);
+
+        // duplicate the model
+        $clonedStrategy = $strategy->replicate();
+        $clonedStrategy->CreatedAt = date(DATE_ATOM, time());
+        $clonedStrategy->LastUpdated = $clonedStrategy->CreatedAt;
+        $clonedStrategy->save();
+
+
+
+        $msg = [
+            "Slug" => $clonedStrategy->Slug,
+            "Id" => $clonedStrategy->SavedStrategyId
+        ];
+
+        $rabbitService = app(RabbitMqService::class);
+        $rabbitService->publish(json_encode($msg), "update." . $clonedStrategy->Slug);
+
+        Notification::make()
+            ->title('Duplicated strategy and published update event to exchange')
+            ->success()
+            ->send();
+
+
+        redirect('/');
+    }
+
     public function submitConfigUpdate() {
         $config = json_decode($this->strategy->Config);
         $formState = $this->form->getState();
