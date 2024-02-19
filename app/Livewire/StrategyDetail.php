@@ -91,7 +91,7 @@ class StrategyDetail extends Component implements HasForms
 
         // duplicate the model
         $clonedStrategy = $strategy->replicate();
-        $clonedStrategy->CreatedAt = date(DATE_ATOM, time());
+        $clonedStrategy->CreatedAt = date('YYYY-MM-DD HH:MM:SS', time());
         $clonedStrategy->LastUpdated = $clonedStrategy->CreatedAt;
         $clonedStrategy->save();
 
@@ -125,7 +125,7 @@ class StrategyDetail extends Component implements HasForms
 
         $strategy = SavedStrategy::find($this->id);
         $strategy->Config = $json;
-        $strategy->LastUpdated = date(DATE_ATOM, time());
+        $strategy->LastUpdated = date('YYYY-MM-DD HH:MM:SS', time());
         $strategy->save();
 
         $msg = [
@@ -146,7 +146,7 @@ class StrategyDetail extends Component implements HasForms
     public function updateRawConfig() {
         $strategy = SavedStrategy::find($this->id);
         $strategy->Config = $this->rawJsonConfig;
-        $strategy->LastUpdated = date(DATE_ATOM, time());
+        $strategy->LastUpdated = date('YYYY-MM-DD HH:MM:SS', time());
         $strategy->save();
 
         Notification::make()
