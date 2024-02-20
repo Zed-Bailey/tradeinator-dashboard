@@ -16,6 +16,11 @@
 
         @endforeach
 
+        <div class="col-span-12">
+            @livewire('account-trades-table', ['accId' => $id])
+        </div>
+
+
 {{--        <div class="col-span-12 w-full">--}}
 {{--            {{json_encode($accountSummary, JSON_PRETTY_PRINT)}}--}}
 {{--        </div>--}}
