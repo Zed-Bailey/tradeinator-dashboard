@@ -21,9 +21,9 @@
         </div>
 
 
-{{--        <div class="col-span-12 w-full">--}}
-{{--            {{json_encode($accountSummary, JSON_PRETTY_PRINT)}}--}}
-{{--        </div>--}}
+        <div class="col-span-12 w-full">
+            @livewire('account-transactions-table', ['accId' => $id])
+        </div>
 
     </div>
 </div>

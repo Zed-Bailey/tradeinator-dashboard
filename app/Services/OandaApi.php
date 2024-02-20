@@ -58,4 +58,8 @@ class OandaApi
         return $this->client->get('accounts/' . $accId . '/trades');
     }
 
+    public function getAccountTransactions(string $accId) {
+        return $this->client->get('accounts/' . $accId . '/transactions/sinceid?id=0');
+    }
+
 }

@@ -1,7 +1,7 @@
 <div class="min-h-72">
 {{--    {{json_encode($data, JSON_PRETTY_PRINT)}}--}}
 
-    <h2 class="text-2xl mt-5 mb-2">Account Trades</h2>
+    <h2 class="text-2xl mt-5 mb-2">Current Open Trades</h2>
     @if($data == null)
         <p>loading</p>
     @else
