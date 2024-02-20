@@ -8,7 +8,11 @@
     </div>
 
 
-    <h1 class="text-3xl mt-4">{{$strategy->StrategyName}}</h1>
+
+    <div class="flex justify-start items-baseline gap-4">
+        <h1 class="text-3xl mt-4">{{$strategy->StrategyName}}</h1>
+        {{$this->editStrategyNameAction}}
+    </div>
     <span class="inline-flex gap-5">
         <span class="font-bold text-gray-400">{{$strategy->Slug}}</span>
 
@@ -34,4 +38,7 @@
         <button class="p-2 rounded-lg bg-blue-500 text-white w-full mt-5">Update</button>
     </form>
 
+
+
+    <x-filament-actions::modals />
 </div>

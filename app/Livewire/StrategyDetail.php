@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use App\Models\SavedStrategy;
 use App\Services\RabbitMqService;
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -13,9 +16,10 @@ use Filament\Notifications\Notification;
 use Livewire\Component;
 use Carbon\Carbon;
 
-class StrategyDetail extends Component implements HasForms
+class StrategyDetail extends Component implements HasForms, HasActions
 {
     use InteractsWithForms;
+    use InteractsWithActions;
 
     public $id;
     public SavedStrategy $strategy;
@@ -31,6 +35,22 @@ class StrategyDetail extends Component implements HasForms
         $this->strategy = SavedStrategy::find($id);
         $this->rawJsonConfig = $this->strategy->Config;
         $this->form->fill();
+    }
+
+    public function editStrategyNameAction() : Action {
+        return Action::make('editStrategyName')
+            ->fillForm([
+                'strategyName' => $this->strategy->StrategyName
+            ])
+            ->form([
+                TextInput::make('strategyName')
+                ->label('Strategy Name')
+                ->required()
+            ])
+            ->action(function(array $data) {
+                $this->strategy->StrategyName = $data['strategyName'];
+                $this->strategy->save();
+            });
     }
 
     public function form(Form $form): Form {
